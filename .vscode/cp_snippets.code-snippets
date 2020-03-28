@@ -1,0 +1,164 @@
+{
+	// Place your cp_workspace workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	
+	"C++ Precode for competitive programming.": {
+		"prefix": "precode",
+		"body": [
+		  "#include <bits/stdc++.h>",
+		  "using namespace std;",
+		  "#ifndef ONLINE_JUDGE",
+		  "    #include \"prettyprint.h\"",
+		  "    template<typename TH> void what_is(const char* str, TH h) {cerr << str << \" = \" << h << \"\\n\";}",
+		  "    template<typename TH, typename... TA> void what_is(const char* str, TH h, TA... t) {",
+		  "        while(*str != ',') {cerr << *str++;} cerr << \" = \" << h << \",\";what_is(str + 1, t...);}",
+		  "    #define wi(...) what_is(#__VA_ARGS__, __VA_ARGS__);",
+		  "    #define LOG(message) cerr << \"--! \" << message << \" !--\" << endl;",
+		  "#else",
+		  "    #define wi(...)",
+		  "    #define LOG(message)",
+		  "#endif",
+		  "",
+		  "#define F first",
+		  "#define S second",
+		  "#define eb emplace_back",
+		  "#define pb push_back",
+		  "#define ALL(x) x.begin(), x.end()",
+		  "#define SZ(x) (int)x.size()",
+		  "#define CONTAINS(cont, val) (cont.find(val) != cont.end())",
+		  "#define endl '\\n'",
+		  "#define TWO_POWER(n) (1LL << (n))",
+		  "",
+		  "typedef long long ll;typedef pair<ll, ll> ii;",
+		  "typedef vector<ll> vi;typedef vector<bool> vb;",
+		  "typedef vector<ii> vii;typedef vector<vi> vvi;",
+		  "",
+		  "const int INF32 = 1E9;",
+		  "const ll INF64 = 4E18;",
+		  "const ll M = 1E9 + 7;",
+		  "const double EPS = 1E-9;",
+		  "const double PI = 2 * acos(0);",
+		  "",
+		  "int main() {",
+		  "    ios::sync_with_stdio(false); cin.tie(NULL); // Turn Off for Interactive Problems",
+		  "#ifndef ONLINE_JUDGE",
+		  "    freopen(\"input.txt\", \"r\", stdin);",
+		  "    freopen(\"output.txt\", \"w\", stdout);",
+		  "#endif",
+		  "    $0",
+		  "    return 0;",
+		  "}"
+		],
+		"description": "C++ Precode for competitive programming."
+	},
+	"if block": {
+		"prefix": "if",
+		"body": [
+		  "if(${1:/*condition*/}) {",
+		  "    ${0:/*code*/}",
+		  "}"
+		],
+		"description": "if block"
+	},
+	"for loop": {
+		"prefix": "for-loop",
+		"body": [
+		  "for(int ${1:i} = ${2:0}; ${1:i} < ${3:n}; ++i) {",
+		  "    ${0:/*code*/}",
+		  "}"
+		],
+		"description": "for loop"
+	},
+	"for each": {
+		"prefix": "foreach",
+		"body": [
+		  "for(auto ${1:var}: ${2:container}) {",
+		  "    ${0:/*code*/}",
+		  "}"
+		],
+		"description": "for each"
+	},
+	"for loop with iterator": {
+		"prefix": "for-iterator",
+		"body": [
+		  "for(${1:container-name}<${2:data_type}>::iterator ${3:it} = ${4:ds}.begin(); ${3:it} != ${4:ds}.end(); ${3:it}++) {",
+		  "    ${2:data_type} ${5:var} = *${3:it};${0:}",
+		  "}"
+		],
+		"description": "for loop with iterator"
+	},
+	"modular arithmetic template": {
+		"prefix": "modint",
+		"body": [
+		  "template<int MOD>",
+		  "struct ModInt {",
+		  "    int x;",
+		  "    ModInt() : x(0) {}",
+		  "    ModInt(int _x) {",
+		  "        x = _x % MOD;",
+		  "        if (x < 0) x += MOD;",
+		  "    }",
+		  "    ModInt(long long _x) {",
+		  "        x = _x % MOD;",
+		  "        if (x < 0) x += MOD;",
+		  "    }",
+		  "    ModInt& operator+=(ModInt rhs) {",
+		  "        x += rhs.x;",
+		  "        if (x >= MOD) x -= MOD;",
+		  "        return *this;",
+		  "    }",
+		  "    ModInt& operator-=(ModInt rhs) {",
+		  "        x -= rhs.x;",
+		  "        if (x < 0) x += MOD;",
+		  "        return *this;",
+		  "    }",
+		  "    ModInt& operator*=(ModInt rhs) {",
+		  "        x = (long long)x * rhs.x % MOD;",
+		  "        return *this;",
+		  "    }",
+		  "    ModInt& operator/=(ModInt rhs) {",
+		  "        return *this *= rhs.inv();",
+		  "    }",
+		  "    ModInt operator+(ModInt rhs) const { return ModInt(*this) += rhs; }",
+		  "    ModInt operator-(ModInt rhs) const { return ModInt(*this) -= rhs; }",
+		  "    ModInt operator*(ModInt rhs) const { return ModInt(*this) *= rhs; }",
+		  "    ModInt operator/(ModInt rhs) const { return ModInt(*this) /= rhs; }",
+		  "    ModInt inv() const {",
+		  "        // should work for non-prime MOD if gcd(x, MOD) = 1",
+		  "        int a = x, b = MOD, u = 1, v = 0;",
+		  "        while (b != 0) {",
+		  "            int t = a / b;",
+		  "            a -= t * b;",
+		  "            u -= t * v;",
+		  "            swap(a, b);",
+		  "            swap(u, v);",
+		  "        }",
+		  "        return u;",
+		  "    }",
+		  "    ModInt pow(long long e) {",
+		  "        ModInt r = 1, p = *this;",
+		  "        while (e) {",
+		  "            if (e & 1) r *= p;",
+		  "            p *= p;",
+		  "            e >>= 1;",
+		  "        }",
+		  "        return r;",
+		  "    }",
+		  "    bool operator==(ModInt rhs) { return x == rhs.x; }",
+		  "    bool operator!=(ModInt rhs) { return x != rhs.x; }",
+		  "    bool operator<(ModInt rhs) { return x < rhs.x; }",
+		  "    bool operator<=(ModInt rhs) { return x <= rhs.x; }",
+		  "    bool operator>(ModInt rhs) { return x > rhs.x; }",
+		  "    bool operator>=(ModInt rhs) { return x >= rhs.x; }",
+		  "    friend ostream& operator<<(ostream &os, ModInt i) { return os << i.x; }",
+		  "};",
+		  "",
+		  "typedef ModInt<(int)1E9 + 7> MI;"
+		],
+		"description": "modular arithmetic template"
+	  }
+}
