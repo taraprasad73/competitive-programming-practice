@@ -4,7 +4,6 @@
 void dfs(vvi& g, int u, vb& visited, vi& colors, int color) {
 	visited[u] = true;
     colors[u] = color;
-    cout << u << endl;
 	for (int i = 0; i < SZ(g[u]); ++i) {
 		int v = g[u][i];
 		if(not visited[v]) {
@@ -52,5 +51,19 @@ vvi dfs_color(vvi &g) {
 		}
 	}
     return cc;
+}
+```
+## Return parents in case the graph is a tree
+```cpp
+void dfs(vvi& g, int u, vb& visited, vi& parents, vi& depth) {
+	visited[u] = true;
+	for (int i = 0; i < SZ(g[u]); ++i) {
+		int v = g[u][i];
+		if(not visited[v]) {
+            parents[v] = u;
+            depth[v] = depth[u] + 1;
+			dfs(g, v, visited, parents, depth);
+		}
+	}
 }
 ```
