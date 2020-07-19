@@ -25,16 +25,25 @@
         },
         {
             "type": "shell",
-            "label": "g++ build active file",
+            "label": "WSL-g++",
             "command": "/usr/bin/g++",
             "args": [
+                "-std=c++17",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-DONLINE_JUDGE"
             ],
             "options": {
                 "cwd": "/usr/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
             }
         }
     ]
