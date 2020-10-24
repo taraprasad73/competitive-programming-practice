@@ -1,4 +1,5 @@
 # Suffix Array
+## [Base Algorithm](https://codeforces.com/edu/course/2/lesson/2/1)
 ```cpp
 vector<pair<char, int> > base_case_preprocessing(string const& s) {
     int n = s.size();
