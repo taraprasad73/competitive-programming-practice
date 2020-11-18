@@ -60,4 +60,9 @@ then login using your Ubuntu username and password
  - Download hightail jar from https://github.com/dj3500/hightail.
  - Make it executable and launch from the RDP session.
  - Use Ctrl + Alt + Shift + B to run the test task instead of the build task. This one has the -DONLINE_JUDGE flag set which skips the freopen commands. This allows hightail to send the input.
-
+### If forgot sudo password
+Refer https://askubuntu.com/a/1171006 and https://medium.com/@TheLittleNaruto/reset-wsl-password-609037c2d6c6
+### To save git credentials
+- Install https://github.com/microsoft/Git-Credential-Manager-Core on ubuntu.
+- use wget to download the debian file.
+- install with sudo dpkg -i 'file'
