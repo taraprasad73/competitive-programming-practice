@@ -11,7 +11,7 @@
 		"body": [
 		  "#include <bits/stdc++.h>",
 		  "using namespace std;",
-		  "#ifndef ONLINE_JUDGE",
+		  "#ifdef LOCAL_JUDGE",
 		  "    #include \"prettyprint.h\"",
 		  "    template<typename TH> void what_is(const char* str, TH h) {cerr << str << \" = \" << h << \"\\n\";}",
 		  "    template<typename TH, typename... TA> void what_is(const char* str, TH h, TA... t) {",
@@ -45,7 +45,7 @@
 		  "",
 		  "int main() {",
 		  "    ios::sync_with_stdio(false); cin.tie(NULL); // Turn Off for Interactive Problems",
-		  "#ifndef ONLINE_JUDGE",
+		  "#ifdef LOCAL_JUDGE",
 		  "    freopen(\"input.txt\", \"r\", stdin);",
 		  "    freopen(\"output.txt\", \"w\", stdout);",
 		  "#endif",
