@@ -37,17 +37,14 @@ int main() {
     }
     vi temp = cards;
     int ans = 0;
-    if(type == "in") {
-        do {
-            ++ans;
+    do {
+        ++ans;
+        if(type == "in") {
             in_shuffle(temp);
-        } while(cards != temp);
-    } else {
-        do {
-            ++ans;
+        } else {
             out_shuffle(temp);
-        } while(cards != temp);
-    }
+        }
+    } while(cards != temp);
     cout << ans;
     return 0;
 }

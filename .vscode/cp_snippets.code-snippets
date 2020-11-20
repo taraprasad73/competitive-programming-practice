@@ -85,8 +85,17 @@
 	"for loop with iterator": {
 		"prefix": "for-iterator",
 		"body": [
-		  "for(${1:container-name}<${2:data_type}>::iterator ${3:it} = ${4:ds}.begin(); ${3:it} != ${4:ds}.end(); ${3:it}++) {",
-		  "    ${2:data_type} ${5:var} = *${3:it};${0:}",
+		  "for(auto ${1:it} = ${2:ds}.begin(); ${1:it} != ${2:ds}.end(); ${1:it}++) {",
+		  "    auto ${3:var} = *${1:it};${0:}",
+		  "}"
+		],
+		"description": "for loop with iterator"
+	},
+	"for loop with reverse iterator": {
+		"prefix": "for-riterator",
+		"body": [
+		  "for(auto ${1:it} = ${2:ds}.rbegin(); ${1:it} != ${2:ds}.rend(); ${1:it}++) {",
+		  "    auto ${3:var} = *${1:it};${0:}",
 		  "}"
 		],
 		"description": "for loop with iterator"
