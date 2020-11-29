@@ -18,3 +18,17 @@ vector<string> split(string const& s) {
     return {it, {}};
 }
 ```
+join vector to form a string, works for both string and char
+```cpp
+template<typename T>
+string join(vector<T> const& v, string delim="") {
+    string s;
+    bool first = true;
+    for (auto const& piece: v) {
+        if(first) first = false;
+        else s += delim;
+        s += piece;
+    }
+    return s;
+}
+```
