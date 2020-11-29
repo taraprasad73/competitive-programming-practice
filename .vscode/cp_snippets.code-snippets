@@ -78,7 +78,7 @@
 		"description": "for loop"
 	},
 	"for each": {
-		"prefix": "foreach",
+		"prefix": "for-each",
 		"body": [
 		  "for(auto ${1:var}: ${2:container}) {",
 		  "    ${0:/*code*/}",
