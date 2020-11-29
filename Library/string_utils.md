@@ -48,7 +48,7 @@ vector<string> split(string const& s, string delim, uint parts=0) {
 }
 ```
 
-## Join vector to forma string
+## Join vector to form a string
 join vector to form a string, works for both string and char
 ```cpp
 template<typename T>
@@ -111,4 +111,19 @@ vector<string> join(vector<vector<string>> const& units, string delim="") {
     }
     return output;
 }
+```
+
+## Multiline strings
+If storing as follows, the first newline has to be removed.
+```cpp
+string nine = R""""(
++---+
+|   |
+|   |
++---+
+    |
+    |
++---+
+)"""";
+nine = split(separator, "\n", 2)[1];
 ```
