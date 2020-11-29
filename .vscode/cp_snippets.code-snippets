@@ -36,6 +36,7 @@
 		  "typedef long long ll;typedef pair<ll, ll> ii;",
 		  "typedef vector<ll> vi;typedef vector<bool> vb;",
 		  "typedef vector<ii> vii;typedef vector<vi> vvi;",
+		  "typedef vector<string> vs; typedef vector<vs> vvs;",
 		  "",
 		  "const int INF32 = 1E9;",
 		  "const ll INF64 = 4E18;",
