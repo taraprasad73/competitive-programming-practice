@@ -21,7 +21,7 @@ vector<string> split(string const& s) {
 }
 ```
 
-## split string int n parts with regex
+## split string into n parts with regex
 ```cpp
 template<typename T>
 string join(vector<T> const& v, string delim="") {
@@ -126,4 +126,12 @@ string nine = R""""(
 +---+
 )"""";
 nine = split(separator, "\n", 2)[1];
+
+const char * three = 
+" - \n"
+"  |\n"
+" - \n"
+"  |\n"
+" - \n";
+vs codes = {three};
 ```
