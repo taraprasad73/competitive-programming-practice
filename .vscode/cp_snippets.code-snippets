@@ -44,6 +44,12 @@
 		  "const double EPS = 1E-9;",
 		  "const double PI = 2 * acos(0);",
 		  "",
+		  "clock_t start_time = clock();",
+		  "void logTime() {",
+		  "    float time_taken = (float)(clock() - start_time) / CLOCKS_PER_SEC;",
+		  "    LOG(\"Time Taken: \" + to_string(time_taken) + \"s\")",
+		  "}",
+		  "",
 		  "void solve() {",
 		  "    $0",
 		  "}",
@@ -55,6 +61,7 @@
 		  "    freopen(\"output.txt\", \"w\", stdout);",
 		  "#endif",
 		  "    solve();",
+		  "    logTime();"
 		  "    return 0;",
 		  "}"
 		],

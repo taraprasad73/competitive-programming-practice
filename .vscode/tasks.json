@@ -7,6 +7,7 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-std=c++17",
+                "-pthread",
                 "-g",
                 "${file}",
                 "-o",
@@ -30,6 +31,7 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-std=c++17",
+                "-pthread",
                 "-g",
                 "${file}",
                 "-o",
