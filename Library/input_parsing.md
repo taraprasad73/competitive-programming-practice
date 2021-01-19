@@ -2,7 +2,8 @@
 ```cpp
 string line;
 while (getline(cin, line)) {
-    // use the line
+    istringstream line_stream(line);
+    int Ar, Ac, Tr, Tc; line_stream >> Ar >> Ac >> Tr >> Tc;
 }
 ```
 

@@ -5,6 +5,18 @@ void print(vs const& lines) {
         cout << lines[i] << endl;
     }
 }
+
+template<typename T>
+void print(vector<vector<T>> const& a) {
+    for(int i = 0; i < a.size(); ++i) {
+        for(int j = 0; j < a[i].size(); ++j) {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
 ```
 
 ## Add commas to numbers
