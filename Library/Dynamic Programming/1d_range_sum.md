@@ -5,7 +5,7 @@
  * -5 -7 -2 -3 -4 -1 -9 -> answer = -1
  */
 template<typename T>
-T max1dSum(vector<T> const& a) {
+T max1dRangeSum(vector<T> const& a) {
     T sum = 0, ans = numeric_limits<T>::min();
     for(int i = 0; i < SZ(a); ++i) {
         sum += a[i];
@@ -31,7 +31,7 @@ T max1dSum(vector<T> const& a) {
  * range = [start, end] (both inclusive) 
  */
 template<typename T>
-tuple<T, int, int> max1dSum(vector<T> const& a) {
+tuple<T, int, int> max1dRangeSum(vector<T> const& a) {
     T sum = 0, ans = numeric_limits<T>::lowest();
     int start = 0, end = 0, curr_start = 0;
     auto handleTies = [&start, &end](int curr_start, int curr_end) { 
@@ -71,7 +71,7 @@ tuple<T, int, int> max1dSum(vector<T> const& a) {
  * range = [start, end] (both inclusive) 
  */ 
 template<typename T>
-tuple<T, int, int> max1dSum(vector<T> const& a) {
+tuple<T, int, int> max1dRangeSum(vector<T> const& a) {
     T sum = 0, ans = numeric_limits<T>::lowest();
     int start = 0, end = 0, curr_start = 0;
     auto handleTies = [&start, &end](int curr_start, int curr_end) { 
