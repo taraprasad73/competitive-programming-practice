@@ -6,7 +6,9 @@ Official Solution: https://github.com/Kodsport/liu-coding-challenge-2018/blob/ma
  * Every day, we have to make a choice whether to continue with the current decision, i.e,
  * selling the stocks on day x, or discard that choice and sell in current day instead. 
  * We do the latter if on selling, the amount received is greater than the amountInHand.
- * The logic is greedy, similar to Kadane, i.e., it is better to continue with a high amount in hand.  
+ * The logic is greedy, similar to Kadane, i.e., it is better to continue with a high amount in hand.
+ * In Kadane, the equivalent decision is when we set the sum to 0, discarding all the previous array
+ * entries, if the sum dips below 0.
  */ 
 void solve() {
     ll quantity = 100;
