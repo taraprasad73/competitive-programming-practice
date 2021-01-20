@@ -16,7 +16,6 @@ void print(vector<vector<T>> const& a) {
     }
     cout << endl;
 }
-
 ```
 
 ## Add commas to numbers

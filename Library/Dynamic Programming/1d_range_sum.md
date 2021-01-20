@@ -1,6 +1,6 @@
 ```cpp
 /**
- * kadane algorithm
+ * 1D-Kadane algorithm
  * works for all negative numbers too
  * -5 -7 -2 -3 -4 -1 -9 -> answer = -1
  */
