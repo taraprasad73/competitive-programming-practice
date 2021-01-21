@@ -1,35 +1,3 @@
-# Sub Array Sums
-```cpp
-/**
- * cnt should be a padded 2d array, with 1 cell padding on all sides. 
- * rows, columns: count of rows and columns of the actual array (excluding the padding)
- */ 
-template<typename T>
-void range2dSumPreProcess(vector<vector<T>> &cnt, int rows, int columns) {
-    for(int i = 1; i <= rows; ++i) {
-        for(int j = 1; j <= columns; ++j) {
-            cnt[i][j] += cnt[i - 1][j];
-            cnt[i][j] += cnt[i][j - 1];
-            cnt[i][j] -= cnt[i - 1][j - 1];
-        }
-    }
-}
-
-/**
- * cnt -> 2D array on which max2dSumPreProcess() has already been called
- * r1, c1 -> North-West corner cell
- * r2, c2 -> South-East corner cell
- */ 
-template<typename T>
-T rangeSum2D(vector<vector<T>> const& cnt, int r1, int c1, int r2, int c2) {
-    T sum = cnt[r2][c2];
-    sum -= cnt[r2][c1 - 1];
-    sum -= cnt[r1 - 1][c2];
-    sum += cnt[r1 - 1][c1 - 1];
-    return sum;
-}
-```
-# 2D Kadane
 ```cpp
 /**
  * cnt should be a padded 2d array, with 1 cell padding on all sides. 
@@ -63,6 +31,8 @@ T max1dRangeSum(vector<T> const& a) {
 
 /**
  * 2D-Kadane algorithm
+ * param a: should be a padded 2d array, with 1 cell padding on all sides. 
+ * rows, columns: count of rows and columns of the actual array (excluding the padding)
  * 
  * works for all negative numbers too
  * -5 -7 -2
@@ -84,5 +54,33 @@ T max2dRangeSum(vector<vector<T>> &a, int rows, int columns) {
         }
     }
     return ans;
+}
+
+void solve() {
+    int t; cin >> t;
+    string line; getline(cin, line); getline(cin, line);
+    bool first = true;
+    while(t--) {
+        if(first) {
+            first = false;
+        } else {
+            cout << endl;
+        }
+        vector<string> input;
+        while(true) {
+            string line; getline(cin, line);
+            if(line.empty()) break;
+            input.pb(line);
+        }
+        int N = SZ(input);
+        vvi cnt(N + 2, vi(N + 2, 0));
+        for(int i = 0; i < N; ++i) {
+            for(int j = 0; j < N; ++j) {
+                // convert 0 to -INF
+                cnt[i + 1][j + 1] = (input[i][j] - '0') == 0 ? -INF32 : 1;
+            }
+        }
+        cout << max(max2dRangeSum(cnt, N, N), 0LL) << endl;
+    }
 }
 ```

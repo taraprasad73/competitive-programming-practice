@@ -1,20 +1,29 @@
 ## Print containters
 ```cpp
-void print(vs const& lines) {
+void print(vs const& lines, bool prettyPrint = true) {
+    if(prettyPrint && !lines.empty())
+        cerr << string(lines[0].size(), '-') << endl;
     for(int i = 0; i < lines.size(); ++i) {
-        cout << lines[i] << endl;
+        cerr << lines[i] << endl;
     }
+    if(prettyPrint && !lines.empty())
+        cerr << string(lines[lines.size() - 1].size(), '=') << endl;
+    cerr << endl;
 }
 
 template<typename T>
-void print(vector<vector<T>> const& a) {
+void print(vector<vector<T>> const& a, bool prettyPrint = true) {
+    if(prettyPrint && !a.empty())
+        cerr << string(2 * a[0].size(), '-') << endl;
     for(int i = 0; i < a.size(); ++i) {
         for(int j = 0; j < a[i].size(); ++j) {
-            cout << a[i][j] << " ";
+            cerr << a[i][j] << " ";
         }
-        cout << endl;
+        cerr << endl;
     }
-    cout << endl;
+    if(prettyPrint && !a.empty())
+        cerr << string(2 * a[a.size() - 1].size(), '=') << endl;
+    cerr << endl;
 }
 ```
 
