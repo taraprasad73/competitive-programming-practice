@@ -5,7 +5,7 @@
  * rows, columns: count of rows and columns of the actual array (excluding the padding)
  */ 
 template<typename T>
-void range2dSumPreProcess(vector<vector<T>> &cnt, int rows, int columns) {
+void rangeSum2DPreProcess(vector<vector<T>> &cnt, int rows, int columns) {
     for(int i = 1; i <= rows; ++i) {
         for(int j = 1; j <= columns; ++j) {
             cnt[i][j] += cnt[i - 1][j];

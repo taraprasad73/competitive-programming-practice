@@ -34,7 +34,7 @@ vs get_lines(int rows) {
 }
 ```
 
-## Input separated by empty lines
+## Input separated by empty lines, number of test cases specified
 ```
 2
 
@@ -67,5 +67,73 @@ while(t--) {
         input.pb(line);
     }
     print(input);
+}
+```
+
+## Input separated by empty lines, number of test cases not specified
+N M<br>
+N x N matrix, with each cell in one line<br>
+Two input separated by new line<br>
+```
+4 3
+1
+2
+2
+1
+1
+0
+2
+2
+0
+2
+3
+3
+1
+2
+1
+3
+
+5 2
+1
+0
+1
+0
+0
+0
+0
+1
+0
+0
+1
+1
+1
+1
+1
+0
+0
+1
+0
+0
+0
+0
+1
+0
+0
+```
+```cpp
+while (true) {
+    string line;
+    while(line.empty()) { // gobble up new lines till a non-empty input
+        if(!getline(cin, line))
+            exit(0); // EOF
+    }
+    istringstream line_stream(line);
+    int n, m; line_stream >> n >> m; wi(n, m)
+    vvi a(n + 2, vi(n + 2));
+    for(int i = n; i >= 1; --i) {
+        for(int j = 1; j <= n; ++j) {
+            cin >> a[i][j];
+        }
+    }
 }
 ```
