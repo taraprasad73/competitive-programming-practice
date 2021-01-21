@@ -48,14 +48,39 @@ template<typename T>
 T max2DRangeSumBrute(vector<vector<T>> &a, int r, int c, bool needsPadding=false) {
     if(needsPadding)
         a = addPadding(a, r, c);
-    print(a);
     rangeSum2DPreProcess(a, r, c);
-    print(a);
     T ans = numeric_limits<T>::min();
     for(int r1 = 1; r1 <= r; ++r1) {
         for(int r2 = r1; r2 <= r; ++r2) {
             for(int c1 = 1; c1 <= c; ++c1) {
                 for(int c2 = c1; c2 <= c; ++c2) {
+                    ans = max(rangeSum2D(a, r1, c1, r2, c2), ans);
+                }
+            }
+        }
+    }
+    return ans;
+}
+
+/**
+ * Variant with extra parameters.
+ * 
+ * maxRows: maximum number of allowed rows of the sub-rectangles 
+ * maxCols: maximum number of allowed columns of the sub-rectangles 
+ * 
+ * a: should be a padded 2d array, with 1 cell padding on all sides. If not, then needsPadding should be true. 
+ * rows, columns: count of rows and columns of the actual array (excluding the padding)
+ */ 
+template<typename T>
+T max2DRangeSumBrute(vector<vector<T>> &a, int r, int c, int maxRows, int maxCols, bool needsPadding=false) {
+    if(needsPadding)
+        a = addPadding(a, r, c);
+    rangeSum2DPreProcess(a, r, c);
+    T ans = numeric_limits<T>::min();
+    for(int r1 = 1; r1 <= r; ++r1) {
+        for(int r2 = r1; r2 <= r && r2 < r1 + maxRows; ++r2) {
+            for(int c1 = 1; c1 <= c; ++c1) {
+                for(int c2 = c1; c2 <= c && c2 < c1 + maxCols; ++c2) {
                     ans = max(rangeSum2D(a, r1, c1, r2, c2), ans);
                 }
             }
