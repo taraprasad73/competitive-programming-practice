@@ -2,12 +2,12 @@
 ```cpp
 /**
  * cnt should be a padded 2d array, with 1 cell padding on all sides. 
- * rows, columns: count of rows and columns of the actual array (excluding the padding)
+ * r, c: count of rows and columns of the actual array (excluding the padding)
  */ 
 template<typename T>
-void rangeSum2DPreProcess(vector<vector<T>> &cnt, int rows, int columns) {
-    for(int i = 1; i <= rows; ++i) {
-        for(int j = 1; j <= columns; ++j) {
+void rangeSum2DPreProcess(vector<vector<T>> &cnt, int r, int c) {
+    for(int i = 1; i <= r; ++i) {
+        for(int j = 1; j <= c; ++j) {
             cnt[i][j] += cnt[i - 1][j];
             cnt[i][j] += cnt[i][j - 1];
             cnt[i][j] -= cnt[i - 1][j - 1];
@@ -93,12 +93,12 @@ T max2DRangeSumBrute(vector<vector<T>> &a, int r, int c, int maxRows, int maxCol
 ```cpp
 /**
  * cnt should be a padded 2d array, with 1 cell padding on all sides. 
- * rows, columns: count of rows and columns of the actual array (excluding the padding)
+ * r, c: count of rows and columns of the actual array (excluding the padding)
  */ 
 template<typename T>
-void applyPrefixSumsOnColumns(vector<vector<T>> &cnt, int rows, int columns) {
-    for(int i = 1; i <= rows; ++i) {
-        for(int j = 1; j <= columns; ++j) {
+void applyPrefixSumsOnColumns(vector<vector<T>> &cnt, int r, int c) {
+    for(int i = 1; i <= r; ++i) {
+        for(int j = 1; j <= c; ++j) {
             cnt[i][j] += cnt[i - 1][j];
         }
     }
