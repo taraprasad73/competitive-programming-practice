@@ -1,11 +1,24 @@
 # 2D Max Sum Brute
 ```cpp
+template<typename T>
+vector<vector<T>> addPadding(vector<vector<T>> const& a, int r, int c) {
+    vector<vector<T>> b(r + 2, vector<T>(c + 2, 0));
+    for(int i = 0; i < r; ++i) {
+        for(int j = 0; j < c; ++j) {
+            b[i + 1][j + 1] = a[i][j];
+        }
+    }
+    return b;
+}
+
 /**
  * cnt should be a padded 2d array, with 1 cell padding on all sides. 
  * r, c: count of rows and columns of the actual array (excluding the padding)
  */ 
 template<typename T>
-void rangeSum2DPreProcess(vector<vector<T>> &cnt, int r, int c) {
+void rangeSum2DPreProcess(vector<vector<T>> &cnt, int r, int c, bool needsPadding=false) {
+    if(needsPadding)
+        addPadding(cnt, r, c);
     for(int i = 1; i <= r; ++i) {
         for(int j = 1; j <= c; ++j) {
             cnt[i][j] += cnt[i - 1][j];
@@ -14,7 +27,6 @@ void rangeSum2DPreProcess(vector<vector<T>> &cnt, int r, int c) {
         }
     }
 }
-
 /**
  * cnt -> 2D array on which max2dSumPreProcess() has already been called
  * r1, c1 -> North-West corner cell
@@ -27,17 +39,6 @@ T rangeSum2D(vector<vector<T>> const& cnt, int r1, int c1, int r2, int c2) {
     sum -= cnt[r1 - 1][c2];
     sum += cnt[r1 - 1][c1 - 1];
     return sum;
-}
-
-template<typename T>
-vector<vector<T>> addPadding(vector<vector<T>> const& a, int r, int c) {
-    vector<vector<T>> b(r + 2, vector<T>(c + 2, 0));
-    for(int i = 0; i < r; ++i) {
-        for(int j = 0; j < c; ++j) {
-            b[i + 1][j + 1] = a[i][j];
-        }
-    }
-    return b;
 }
 
 /**
