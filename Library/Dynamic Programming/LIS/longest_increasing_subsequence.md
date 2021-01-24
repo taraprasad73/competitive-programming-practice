@@ -49,7 +49,7 @@ int lis_recursion(int n, vi &a, vi &memo, vi &parent) {
     for(int i = 0; i < n; ++i) {
         if(a[i] < a[n]) {
             ll x = lis_recursion(i, a, memo, parent);
-            if(x + 1 > memo[n]) {
+            if(x + 1 > memo[n]) { // need to change sometimes to >=
                 memo[n] = x + 1;
                 parent[n] = i;
             }
@@ -84,7 +84,7 @@ vi computeLisPath(vi &a) {
     vi memo(n, -1), parent(n, -1);
     for(int i = 0; i < SZ(a); ++i) {
         int x = lis_recursion(i, a, memo, parent);
-        if(x > max_lis) {
+        if(x > max_lis) { // need to change sometimes to >=
             max_lis = x;
             lis_pos = i; 
         }
@@ -161,7 +161,7 @@ private:
         int max_lis = 0, lis_pos;
         for(int i = 0; i < SZ(nodes); ++i) {
             int x = lis_recursion(i);
-            if(x > max_lis) {
+            if(x > max_lis) { // need to change sometimes to >=
                 max_lis = x;
                 lis_pos = i; 
             }
@@ -225,6 +225,10 @@ private:
         lis_path_values.pb(nodes[pos].value);
     }
 
+    /**
+     * Computes the last longest increasing subsequence
+     * [1 3 5 2 5] -> [1 -> 2 -> 5] not [1 -> 3 -> 5]
+     */ 
     void compute() {
         for(int i = 0; i < SZ(nodes); ++i) {
             auto itr = lower_bound(lis.begin(), lis.end(), nodes[i].value);
