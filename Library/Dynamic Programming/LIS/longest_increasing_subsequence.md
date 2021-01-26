@@ -22,8 +22,9 @@ ll lis(int n, vi &a, vi &memo) {
 /**
  * a: 0-indexed
  */  
-int lis(vi const& a) {
-    vi lis;
+template<typename T> 
+int lis(vector<T> const& a) {
+    vector<T> lis;
     for(int i = 0; i < SZ(a); ++i) {
         auto itr = lower_bound(lis.begin(), lis.end(), a[i]);
         if(itr == lis.end()) 
