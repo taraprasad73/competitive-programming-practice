@@ -1,5 +1,6 @@
 # Contest: [Codeforces Global Round 7](https://codeforces.com/contest/1326)
 Solutions at https://codeforces.com/contest/1326/my
+
 ## [A. Bad Ugly Numbers](https://codeforces.com/contest/1326/problem/A)
 Construction logic
 ```
@@ -150,76 +151,48 @@ int main() {
         }
     }
 }
-
 ```
-# ModInt Template
-This is the ModInt template used for the C problem. New additions include prefix and postix operators for both increment and decrement operations. 
-```cpp
-template<int MOD>
-struct ModInt {
-    int x;
-    ModInt() : x(0) {}
-    ModInt(int _x) {
-        x = _x % MOD;
-        if (x < 0) x += MOD;
-    }
-    ModInt(long long _x) {
-        x = _x % MOD;
-        if (x < 0) x += MOD;
-    }
-    ModInt& operator+=(ModInt rhs) {
-        x += rhs.x;
-        if (x >= MOD) x -= MOD;
-        return *this;
-    }
-    ModInt& operator-=(ModInt rhs) {
-        x -= rhs.x;
-        if (x < 0) x += MOD;
-        return *this;
-    }
-    ModInt& operator*=(ModInt rhs) {
-        x = (long long)x * rhs.x % MOD;
-        return *this;
-    }
-    ModInt& operator/=(ModInt rhs) {
-        return *this *= rhs.inv();
-    }
-    ModInt operator+(ModInt rhs) const { return ModInt(*this) += rhs; }
-    ModInt operator-(ModInt rhs) const { return ModInt(*this) -= rhs; }
-    ModInt operator*(ModInt rhs) const { return ModInt(*this) *= rhs; }
-    ModInt operator/(ModInt rhs) const { return ModInt(*this) /= rhs; }
-    ModInt& operator++() { return *this += ModInt(1); }     // prefix
-    ModInt& operator--() { return *this -= ModInt(1); }     // prefix
-    ModInt operator++(int) { return *this += ModInt(1); }   // postfix
-    ModInt operator--(int) { return *this -= ModInt(1); }   // postfix
 
-    ModInt inv() const {
-        // should work for non-prime MOD if gcd(x, MOD) = 1
-        int a = x, b = MOD, u = 1, v = 0;
-        while (b != 0) {
-            int t = a / b;
-            a -= t * b;
-            u -= t * v;
-            swap(a, b);
-            swap(u, v);
-        }
-        return u;
+## [D2. Prefix-Suffix Palindrome (Hard version)](https://codeforces.com/contest/1326/problem/D2)
+The idea was to match characters from both ends till they match and then find the longest palindromic prefix and suffix and see which forms the longest palindrome when attached to the macthed characters.
+In this hard version prefix function is used to obtain the longest plaindromic prefix and suffix. 
+
+The prefix function for a string of length n is defined as an array π of length n, where π[i] is the length of the longest proper prefix of the substring s[0…i] which is also a suffix of this substring. 
+
+So, if reverse(s) = s' and length of s#s' is n1. Then π[n1 - 1] would give the largest prefix which is also a suffix. Since, an # is included, this prefix can't have length longer than n. And since the prefix belongs to s and suffix belongs to s', and prefix = suffix, it is a palindrome.
+```cpp
+vi prefix_function(string s) {
+    int n = s.length();
+    vi pi(n);
+    for (int i = 1; i < n; ++i) {
+        int j = pi[i - 1];
+        // invariant: j is the length of the prefix which matches the suffix at i - 1
+        while (j > 0 && s[i] != s[j])
+            j = pi[j - 1];
+        if (s[i] == s[j])
+            pi[i] = j + 1; // note that j is 0-indexed, so length is 1 more
+        else
+            pi[i] = j;
     }
-    ModInt pow(long long e) {
-        ModInt r = 1, p = *this;
-        while (e) {
-            if (e & 1) r *= p;
-            p *= p;
-            e >>= 1;
-        }
-        return r;
+    return pi;
+}
+
+int t; cin >> t;
+while(t--) {
+    string s; cin >> s; wi(s)
+    int n = s.length();
+    int match_cnt = 0;
+    while(match_cnt < (n / 2) and  s[match_cnt] == s[n - match_cnt - 1]) {
+        ++match_cnt;
     }
-    bool operator==(ModInt rhs) { return x == rhs.x; }
-    bool operator!=(ModInt rhs) { return x != rhs.x; }
-    bool operator<(ModInt rhs) { return x < rhs.x; }
-    bool operator<=(ModInt rhs) { return x <= rhs.x; }
-    bool operator>(ModInt rhs) { return x > rhs.x; }
-    bool operator>=(ModInt rhs) { return x >= rhs.x; }
-    friend ostream& operator<<(ostream &os, ModInt i) { return os << i.x; }
-};
+    string unmatched = s.substr(match_cnt, n - 2 * match_cnt);
+    string unmatched_reverse = string(unmatched.rbegin(), unmatched.rend());
+    string fwd = unmatched + '#' + unmatched_reverse;
+    string bwd = unmatched_reverse + '#' + unmatched;
+    int lpp = prefix_function(fwd)[fwd.length() - 1]; // longest palindromic prefix
+    int lps = prefix_function(bwd)[bwd.length() - 1]; // longest palindromic suffix
+    if(lpp >= lps)
+        cout << s.substr(0, match_cnt + lpp) << s.substr(n - match_cnt, match_cnt) << endl;
+    else
+        cout << s.substr(0, match_cnt) << s.substr(n - match_cnt - lps, match_cnt + lps) << endl;
 ```
